@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
 
 public class LoginPage {
     WebDriver driver;
@@ -34,6 +35,14 @@ public class LoginPage {
     @FindBy(id="login-button")
     private WebElement loginbutton;
 
+    //find error message for failed login
+    @FindBy(xpath = "//*[@id=\"login_button_container\"]/div/form/div[3]/h3")
+    private WebElement errormessage;
+
+    //close error message button
+    @FindBy(xpath = "//button[@class='error-button']")
+    private WebElement closeerrormessage;
+
     //validate wording on Login Page
     public void validateloginpage(){
         AssertJUnit.assertEquals("Swag Labs", logintitlepage.getText());
@@ -55,5 +64,11 @@ public class LoginPage {
     //click Login button
     public void clickloginbutton(){
         loginbutton.click();
+    }
+
+    //validate error message for login failed
+    public void validateerrormessage(){
+        AssertJUnit.assertEquals("Epic sadface: Username and password do not match any user in this service", errormessage.getText());
+        closeerrormessage.isDisplayed();
     }
 }

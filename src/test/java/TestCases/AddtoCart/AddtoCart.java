@@ -1,11 +1,11 @@
-package TestCases.Login;
+package TestCases.AddtoCart;
 
+import ObjectRepository.Cart.CartPage;
 import ObjectRepository.Dashboard.DashboardPage;
 import ObjectRepository.Header.HeaderPage;
 import ObjectRepository.Login.LoginPage;
 import Utils.Util;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.logging.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class SuccessfulLogin extends Util {
+public class AddtoCart extends Util {
     public static WebDriver driver;
 
     @BeforeTest
@@ -43,21 +43,33 @@ public class SuccessfulLogin extends Util {
     }
 
     @Test(dataProvider = "getData")
-    public static void successfullogin(HashMap<String, String> input){
+    public static void addtocart(HashMap<String, String> input) throws InterruptedException {
         driver.get("https://saucedemo.com/");
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         LoginPage loginPage = new LoginPage(driver);
         HeaderPage headerPage = new HeaderPage(driver);
         DashboardPage dashboardPage = new DashboardPage(driver);
+        CartPage cartPage = new CartPage(driver);
 
         loginPage.validateloginpage();
         loginPage.setUsername(input.get("username"));
         loginPage.setPassword(input.get("password"));
         loginPage.clickloginbutton();
 
-        headerPage.validateheader();
-        dashboardPage.validatedashboardpage();
+        int amountofproducts = 2;
+        String[] productname = dashboardPage.getproductname(amountofproducts);
+        String[] productdesc = dashboardPage.getproductdesc(amountofproducts);
+        String[] productprice = dashboardPage.getproductprice(amountofproducts);
+        dashboardPage.clickaddtocartbutton(amountofproducts);
+
+        headerPage.clickcart();
+
+        cartPage.validatecartpage();
+        cartPage.validateproductqty();
+        cartPage.validateproductname(productname);
+        cartPage.validateproductdesc(productdesc);
+        cartPage.validateproductprice(productprice);
     }
 
     @DataProvider

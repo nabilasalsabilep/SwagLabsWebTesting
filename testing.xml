@@ -6,6 +6,8 @@
         <parameter name="browser" value="Chrome"/>
         <classes>
             <class name="TestCases.Login.SuccessfulLogin"/>
+            <class name="TestCases.Login.LoginFailed"/>
+            <class name="TestCases.AddtoCart.AddtoCart"/>
         </classes>
     </test>
 </suite>

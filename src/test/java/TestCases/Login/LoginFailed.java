@@ -1,22 +1,19 @@
 package TestCases.Login;
 
-import ObjectRepository.Dashboard.DashboardPage;
-import ObjectRepository.Header.HeaderPage;
 import ObjectRepository.Login.LoginPage;
-import Utils.Util;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.logging.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import Utils.RandomData;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class SuccessfulLogin extends Util {
+public class LoginFailed {
     public static WebDriver driver;
 
     @BeforeTest
@@ -42,27 +39,20 @@ public class SuccessfulLogin extends Util {
         driver.quit();
     }
 
-    @Test(dataProvider = "getData")
-    public static void successfullogin(HashMap<String, String> input){
+    @Test
+    public static void failedtologinwithinvalidusernameandpassword(){
         driver.get("https://saucedemo.com/");
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         LoginPage loginPage = new LoginPage(driver);
-        HeaderPage headerPage = new HeaderPage(driver);
-        DashboardPage dashboardPage = new DashboardPage(driver);
 
-        loginPage.validateloginpage();
-        loginPage.setUsername(input.get("username"));
-        loginPage.setPassword(input.get("password"));
+        RandomData randomData = new RandomData();
+        String username = randomData.generateRandomUsername();
+        String password = randomData.generateRandomPassword();
+
+        loginPage.setUsername(username);
+        loginPage.setPassword(password);
         loginPage.clickloginbutton();
-
-        headerPage.validateheader();
-        dashboardPage.validatedashboardpage();
-    }
-
-    @DataProvider
-    public Object[][] getData() throws IOException {
-        List<HashMap<String, String>> data = getjsonData("/Users/salsa/IdeaProjects/SwagLabsWebTesting/src/test/java/TestData/UserAccount.json");
-        return new Object[][] { {data.get(0)}};
+        loginPage.validateerrormessage();
     }
 }
