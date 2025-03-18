@@ -66,37 +66,33 @@ public class DashboardPage {
         AssertJUnit.assertEquals("Products", productstitlepage.getText());
     }
 
-    //get product name list with selected amount
-    public String[] getproductname(int size){
+    public String[] getproductname(int size) {
         List<WebElement> elements = productname;
-
         List<String> itemNames = new ArrayList<>();
 
-        for (int i = 1; i <= size; i++) {
+        for (int i = 0; i < size; i++) {
             itemNames.add(elements.get(i).getText());
         }
-        return itemNames.toArray(new String[0]);
+        return itemNames.toArray(new String[1]);
     }
 
-    //get product description
-    public String[] getproductdesc(int size){
+    // Get product description list with selected amount
+    public String[] getproductdesc(int size) {
         List<WebElement> elements = productdescription;
-
         List<String> itemDesc = new ArrayList<>();
 
-        for (int i = 1; i <= size; i++) {
+        for (int i = 0; i < size; i++) {
             itemDesc.add(elements.get(i).getText());
         }
-        return itemDesc.toArray(new String[0]);
+        return itemDesc.toArray(new String[1]);
     }
 
-    //get product price
-    public String[] getproductprice(int size){
+    // Get product price list with selected amount
+    public String[] getproductprice(int size) {
         List<WebElement> elements = productprice;
-
         List<String> itemPrice = new ArrayList<>();
 
-        for (int i = 1; i <= size; i++) {
+        for (int i = 0; i < size; i++) {
             itemPrice.add(elements.get(i).getText());
         }
         return itemPrice.toArray(new String[1]);
@@ -108,22 +104,17 @@ public class DashboardPage {
 
         List<String> itemNames = new ArrayList<>();
 
-        // Collect product names from the page
         for (int i = 0; i < size; i++) {
             itemNames.add(elements.get(i).getText());
         }
 
         for (int i = 0; i < size; i++) {
-            // Get the product name from the list
             String productName = itemNames.get(i);
 
-            // Format the product name to match the 'name' attribute in the 'add-to-cart' button
             String formattedProductName = productName.toLowerCase().replace(" ", "-");
 
-            // Construct the XPath dynamically using the formatted product name
             WebElement addToCartButton = driver.findElement(By.xpath("//button[@name='add-to-cart-" + formattedProductName + "']"));
 
-            // Click the "Add to Cart" button
             addToCartButton.click();
         }
     }
@@ -132,10 +123,6 @@ public class DashboardPage {
     public void clickproductname(int size){
         List<WebElement> elements = productname;
 
-        if (size >= 1 && size < elements.size()) {
-            elements.get(size).click();
-        } else {
-            System.out.println("Invalid index: " + size);
-        }
+        elements.get(size-1).click();
     }
 }

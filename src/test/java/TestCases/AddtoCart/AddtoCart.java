@@ -68,9 +68,9 @@ public class AddtoCart extends Util {
         dashboardPage.clickproductname(amountofproducts);
 
         productDetailsPage.validatebookdetailimage();
-        productDetailsPage.validateproductname(productname, amountofproducts-1);
-        productDetailsPage.validateproductdesc(productdesc, amountofproducts-1);
-        productDetailsPage.validateproductprice(productprice, amountofproducts-1);
+        productDetailsPage.validateproductname(productname, amountofproducts);
+        productDetailsPage.validateproductdesc(productdesc, amountofproducts);
+        productDetailsPage.validateproductprice(productprice, amountofproducts);
         productDetailsPage.clickaddtocart();
 
         headerPage.clickcart();

@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class SuccessfulOpenProductDetail extends Util {
+public class OpenProductDetail extends Util {
     public static WebDriver driver;
 
     @BeforeTest
@@ -67,9 +67,9 @@ public class SuccessfulOpenProductDetail extends Util {
         dashboardPage.clickproductname(amountofproducts);
 
         productDetailsPage.validatebookdetailimage();
-        productDetailsPage.validateproductname(productname, amountofproducts-1);
-        productDetailsPage.validateproductdesc(productdesc, amountofproducts-1);
-        productDetailsPage.validateproductprice(productprice, amountofproducts-1);
+        productDetailsPage.validateproductname(productname, amountofproducts);
+        productDetailsPage.validateproductdesc(productdesc, amountofproducts);
+        productDetailsPage.validateproductprice(productprice, amountofproducts);
     }
 
     @DataProvider

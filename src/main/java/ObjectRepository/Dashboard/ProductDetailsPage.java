@@ -54,8 +54,7 @@ public class ProductDetailsPage {
 
     //validate product name
     public void validateproductname(String[] productnames, int i){
-        if (i >= 0 && i < productnames.length) {
-            String expectedProductName = productnames[i];
+            String expectedProductName = productnames[i-1];
             String actualProductName = productname.getText();
             AssertJUnit.assertEquals("Product name mismatch!", expectedProductName, actualProductName);
 
@@ -64,35 +63,35 @@ public class ProductDetailsPage {
             } else {
                 System.out.println("Validation Failed: Product name mismatch! Expected: " + expectedProductName + ", Found: " + actualProductName);
             }
-        } else {
-            System.out.println("Invalid index: " + i);
-        }
+
     }
 
     //validate product desc
     public void validateproductdesc(String[] productsdesc, int i){
-        String expectedProductDesc = productsdesc[i];
-        String actualProductDesc = productdescription.getText();
-        AssertJUnit.assertEquals("Product desc mismatch!", expectedProductDesc, actualProductDesc);
+            String expectedProductDesc = productsdesc[i-1];
+            String actualProductDesc = productdescription.getText();
+            AssertJUnit.assertEquals("Product desc mismatch!", expectedProductDesc, actualProductDesc);
 
-        if (expectedProductDesc.equals(actualProductDesc)) {
-            System.out.println("Validation Passed: Product desc matches: " + actualProductDesc);
-        } else {
-            System.out.println("Validation Failed: Product desc mismatch! Expected: " + expectedProductDesc + ", Found: " + actualProductDesc);
-        }
+            if (expectedProductDesc.equals(actualProductDesc)) {
+                System.out.println("Validation Passed: Product desc matches: " + actualProductDesc);
+            } else {
+                System.out.println("Validation Failed: Product desc mismatch! Expected: " + expectedProductDesc + ", Found: " + actualProductDesc);
+            }
     }
 
-    //validate product price
-    public void validateproductprice(String[] productsprice, int i){
-        String expectedProductPrice = productsprice[i];
-        String actualProductPrice = productprice.getText();
-        AssertJUnit.assertEquals("Product price mismatch!", expectedProductPrice, actualProductPrice);
+    // Validate product price
+    public void validateproductprice(String[] productsprice, int i) {
+            String expectedProductPrice = productsprice[i-1];
+            String actualProductPrice = productprice.getText();
 
-        if (expectedProductPrice.equals(actualProductPrice)) {
-            System.out.println("Validation Passed: Product price matches: " + actualProductPrice);
-        } else {
-            System.out.println("Validation Failed: Product price mismatch! Expected: " + expectedProductPrice + ", Found: " + actualProductPrice);
-        }
+            AssertJUnit.assertEquals("Product price mismatch!", expectedProductPrice, actualProductPrice);
+
+            if (expectedProductPrice.equals(actualProductPrice)) {
+                System.out.println("Validation Passed: Product price matches: " + actualProductPrice);
+            } else {
+                System.out.println("Validation Failed: Product price mismatch! Expected: " + expectedProductPrice + ", Found: " + actualProductPrice);
+            }
+
     }
 
     //click add to cart button
