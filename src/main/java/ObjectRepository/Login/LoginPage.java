@@ -37,9 +37,9 @@ public class LoginPage {
     //validate wording on Login Page
     public void validateloginpage(){
         AssertJUnit.assertEquals("Swag Labs", logintitlepage.getText());
-        AssertJUnit.assertEquals("Username", inputusername.getCssValue("placeholder"));
-        AssertJUnit.assertEquals("Password", inputpassword.getCssValue("placeholder"));
-        AssertJUnit.assertEquals("Login", loginbutton.getText());
+        AssertJUnit.assertEquals("Username", inputusername.getAttribute("placeholder"));
+        AssertJUnit.assertEquals("Password", inputpassword.getAttribute("placeholder"));
+        AssertJUnit.assertEquals("Login", loginbutton.getAttribute("value"));
     }
 
     //input username
