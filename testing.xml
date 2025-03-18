@@ -7,7 +7,9 @@
         <classes>
             <class name="TestCases.Login.SuccessfulLogin"/>
             <class name="TestCases.Login.LoginFailed"/>
+            <class name="TestCases.ProductDetail.SuccessfulOpenProductDetail"/>
             <class name="TestCases.AddtoCart.AddtoCart"/>
+            <class name="TestCases.Checkout.Checkout"/>
         </classes>
     </test>
 </suite>

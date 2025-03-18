@@ -2,6 +2,7 @@ package TestCases.AddtoCart;
 
 import ObjectRepository.Cart.CartPage;
 import ObjectRepository.Dashboard.DashboardPage;
+import ObjectRepository.Dashboard.ProductDetailsPage;
 import ObjectRepository.Header.HeaderPage;
 import ObjectRepository.Login.LoginPage;
 import Utils.Util;
@@ -51,17 +52,26 @@ public class AddtoCart extends Util {
         HeaderPage headerPage = new HeaderPage(driver);
         DashboardPage dashboardPage = new DashboardPage(driver);
         CartPage cartPage = new CartPage(driver);
+        ProductDetailsPage productDetailsPage = new ProductDetailsPage(driver);
 
         loginPage.validateloginpage();
         loginPage.setUsername(input.get("username"));
         loginPage.setPassword(input.get("password"));
         loginPage.clickloginbutton();
 
-        int amountofproducts = 2;
+        int amountofproducts = 3;
         String[] productname = dashboardPage.getproductname(amountofproducts);
         String[] productdesc = dashboardPage.getproductdesc(amountofproducts);
         String[] productprice = dashboardPage.getproductprice(amountofproducts);
-        dashboardPage.clickaddtocartbutton(amountofproducts);
+        dashboardPage.clickaddtocartbutton(amountofproducts-1);
+
+        dashboardPage.clickproductname(amountofproducts);
+
+        productDetailsPage.validatebookdetailimage();
+        productDetailsPage.validateproductname(productname, amountofproducts-1);
+        productDetailsPage.validateproductdesc(productdesc, amountofproducts-1);
+        productDetailsPage.validateproductprice(productprice, amountofproducts-1);
+        productDetailsPage.clickaddtocart();
 
         headerPage.clickcart();
 

@@ -72,7 +72,7 @@ public class DashboardPage {
 
         List<String> itemNames = new ArrayList<>();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 1; i <= size; i++) {
             itemNames.add(elements.get(i).getText());
         }
         return itemNames.toArray(new String[0]);
@@ -84,7 +84,7 @@ public class DashboardPage {
 
         List<String> itemDesc = new ArrayList<>();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 1; i <= size; i++) {
             itemDesc.add(elements.get(i).getText());
         }
         return itemDesc.toArray(new String[0]);
@@ -96,10 +96,10 @@ public class DashboardPage {
 
         List<String> itemPrice = new ArrayList<>();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 1; i <= size; i++) {
             itemPrice.add(elements.get(i).getText());
         }
-        return itemPrice.toArray(new String[0]);
+        return itemPrice.toArray(new String[1]);
     }
 
     //click add to cart button
@@ -125,6 +125,17 @@ public class DashboardPage {
 
             // Click the "Add to Cart" button
             addToCartButton.click();
+        }
+    }
+
+    //click product name
+    public void clickproductname(int size){
+        List<WebElement> elements = productname;
+
+        if (size >= 1 && size < elements.size()) {
+            elements.get(size).click();
+        } else {
+            System.out.println("Invalid index: " + size);
         }
     }
 }

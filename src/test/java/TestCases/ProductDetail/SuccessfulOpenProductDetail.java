@@ -1,11 +1,11 @@
-package TestCases.Checkout;
+package TestCases.ProductDetail;
 
 import ObjectRepository.Cart.CartPage;
-import ObjectRepository.Cart.CheckoutPage;
 import ObjectRepository.Dashboard.DashboardPage;
+import ObjectRepository.Dashboard.ProductDetailsPage;
 import ObjectRepository.Header.HeaderPage;
 import ObjectRepository.Login.LoginPage;
-import Utils.*;
+import Utils.Util;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Checkout extends Util {
+public class SuccessfulOpenProductDetail extends Util {
     public static WebDriver driver;
 
     @BeforeTest
@@ -44,7 +44,7 @@ public class Checkout extends Util {
     }
 
     @Test(dataProvider = "getData")
-    public static void checkout(HashMap<String, String> input) throws InterruptedException {
+    public static void successfulopenproductdetail(HashMap<String, String> input) throws InterruptedException {
         driver.get("https://saucedemo.com/");
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
@@ -52,7 +52,7 @@ public class Checkout extends Util {
         HeaderPage headerPage = new HeaderPage(driver);
         DashboardPage dashboardPage = new DashboardPage(driver);
         CartPage cartPage = new CartPage(driver);
-        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        ProductDetailsPage productDetailsPage = new ProductDetailsPage(driver);
 
         loginPage.validateloginpage();
         loginPage.setUsername(input.get("username"));
@@ -63,38 +63,13 @@ public class Checkout extends Util {
         String[] productname = dashboardPage.getproductname(amountofproducts);
         String[] productdesc = dashboardPage.getproductdesc(amountofproducts);
         String[] productprice = dashboardPage.getproductprice(amountofproducts);
-        dashboardPage.clickaddtocartbutton(amountofproducts);
 
-        headerPage.clickcart();
+        dashboardPage.clickproductname(amountofproducts);
 
-        cartPage.validatecartpage();
-        cartPage.validateproductqty();
-        cartPage.validateproductname(productname);
-        cartPage.validateproductdesc(productdesc);
-        cartPage.validateproductprice(productprice);
-        cartPage.clickcheckout();
-
-        checkoutPage.validatecheckoutpage();
-
-        RandomData randomData = new RandomData();
-        checkoutPage.setfirstname(randomData.generateRandomFirstName());
-        checkoutPage.setlastname(randomData.generateRandomLastName());
-        checkoutPage.setpostalcode(randomData.generateRandomPostalCode());
-        checkoutPage.clickcontinue();
-
-        checkoutPage.validatecheckoutoverviewpage();
-        checkoutPage.validateproductname(productname);
-        checkoutPage.validateproductqty();
-        checkoutPage.validateproductdesc(productdesc);
-        checkoutPage.validateproductprice(productprice);
-        checkoutPage.validatetax();
-        checkoutPage.validatetotal();
-        checkoutPage.clickfinish();
-        checkoutPage.validatefinisheddcheckout();
-        checkoutPage.clickbackhome();
-
-        headerPage.validateheader();
-        dashboardPage.validatedashboardpage();
+        productDetailsPage.validatebookdetailimage();
+        productDetailsPage.validateproductname(productname, amountofproducts-1);
+        productDetailsPage.validateproductdesc(productdesc, amountofproducts-1);
+        productDetailsPage.validateproductprice(productprice, amountofproducts-1);
     }
 
     @DataProvider
