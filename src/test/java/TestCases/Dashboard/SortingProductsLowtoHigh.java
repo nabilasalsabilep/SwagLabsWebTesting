@@ -44,7 +44,7 @@ public class SortingProductsLowtoHigh extends Util {
     }
 
     @Test(dataProvider = "getData")
-    public static void sortinglowtohighprice(HashMap<String, String> input) throws InterruptedException {
+    public static void sortingfromlowtohighprice(HashMap<String, String> input) throws InterruptedException {
         driver.get("https://saucedemo.com/");
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 

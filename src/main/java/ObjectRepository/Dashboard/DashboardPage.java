@@ -128,7 +128,7 @@ public class DashboardPage {
     }
 
     //sorting product from low to high price
-    public void sortingproductbylohi(){
+    public void sortingproductsbylohi(){
         sortingoptionlohi.click();
 
         List<Double> prices = new ArrayList<>();
