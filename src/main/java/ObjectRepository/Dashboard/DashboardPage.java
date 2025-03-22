@@ -10,6 +10,7 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.testng.AssertJUnit;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DashboardPage {
@@ -124,5 +125,27 @@ public class DashboardPage {
         List<WebElement> elements = productname;
 
         elements.get(size-1).click();
+    }
+
+    //sorting product from low to high price
+    public void sortingproductbylohi(){
+        sortingoptionlohi.click();
+
+        List<Double> prices = new ArrayList<>();
+
+        for (WebElement priceElement : productprice) {
+            String priceText = priceElement.getText().replace("$", "").trim();
+            double price = Double.parseDouble(priceText);
+            prices.add(price);
+        }
+
+        List<Double> sortedPrices = new ArrayList<>(prices);
+        Collections.sort(sortedPrices);
+
+        if (prices.equals(sortedPrices)) {
+            System.out.println("Prices are sorted in ascending order.");
+        } else {
+            System.out.println("Prices are NOT sorted in ascending order.");
+        }
     }
 }
