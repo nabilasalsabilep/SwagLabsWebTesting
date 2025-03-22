@@ -57,7 +57,7 @@ public class SortingProductsLowtoHigh extends Util {
         loginPage.setPassword(input.get("password"));
         loginPage.clickloginbutton();
 
-        dashboardPage.sortingproductbylohi();
+        dashboardPage.sortingproductsbylohi();
     }
 
     @DataProvider
